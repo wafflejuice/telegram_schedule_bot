@@ -41,6 +41,7 @@ def run():
 	html = response.text
 	soup = BeautifulSoup(html, 'html.parser')
 	
+	# TODO: convert into async code
 	while True:
 		for schedule in soup.find_all(class_='schedule_cnt'):
 			id = str(schedule.get('id'))
