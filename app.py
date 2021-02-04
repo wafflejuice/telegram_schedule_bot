@@ -22,7 +22,7 @@ def text_to_message(date, text):
 	return date_to_korean_format(date) + chr(10) + text
 
 def updated_text_to_message(date, existing_text, update_text):
-	base_message = "<b>※UPDATED※</b>{0}{0}{1}{0}{2}{0}'<i>에서</i>'{0}{3}{0}'<i>로 변경</i>'"
+	base_message = "<b>※UPDATED※</b>{0}{0}{1}{0}{2}{0}<i>에서</i>{0}{3}{0}<i>로 변경</i>"
 	
 	return base_message.format(chr(10), date_to_korean_format(date), existing_text, update_text)
 
@@ -53,13 +53,13 @@ def run():
 				cursor.execute("INSERT INTO minjoo_schedule_table (id, text) VALUES ('{}', '{}')".format(id, text))
 				
 				if text != '등록된 일정이 없습니다.':
-					requests.get(send_message_url, params={'chat_id': chat_id, 'text': text_to_message(date, text)})
+					requests.get(send_message_url, params={'chat_id': chat_id, 'text': text_to_message(date, text), 'parse_mode':'html'})
 			else:
 				cursor.execute("SELECT text from minjoo_schedule_table where id='{}'".format(id))
 				existing_text = cursor.fetchone()[0]
 				if existing_text != text:
 					cursor.execute("UPDATE minjoo_schedule_table SET text='{}' WHERE id='{}'".format(text, id))
-					requests.get(send_message_url, params={'chat_id': chat_id, 'text': updated_text_to_message(date, existing_text, text)})
+					requests.get(send_message_url, params={'chat_id': chat_id, 'text': updated_text_to_message(date, existing_text, text), 'parse_mode':'html'})
 		
 		db.commit()
 		
