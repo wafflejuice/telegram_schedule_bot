@@ -1,6 +1,6 @@
 # Schedule bot
 
-정부인사(더불어민주당)의 일정을 주식 투자에 참고하기 위한 telegram bot이다.
+더불어민주당 인사의 일정을 주식 투자에 참고하기 위해 작성한 telegram bot 코드이다.
 
 ## Usage
 
