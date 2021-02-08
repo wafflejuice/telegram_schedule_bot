@@ -27,7 +27,7 @@ class Telegram:
 		text_lower = update.message.text.lower()
 		
 		def select_schedule_by_date(date):
-			MariaDB().execute("SELECT text from minjoo where date='{}'".format(date))
+			MariaDB().execute("SELECT schedule from minjoo where date='{}'".format(date))
 			return MariaDB().fetch_one()[0]
 		
 		# gov schedule from today to available
