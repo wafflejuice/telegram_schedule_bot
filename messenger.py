@@ -4,13 +4,15 @@ import re
 
 from database import MariaDB
 from config import Config
-import constants
 
 class Telegram:
+	TELEGRAM_GET_UPDATES_BASE_URL = 'https://api.telegram.org/bot{}/getUpdates'
+	TELEGRAM_SEND_MESSAGE_BASE_URL = 'https://api.telegram.org/bot{}/sendMessage'
+	
 	@staticmethod
 	def send_message(chat_id, message):
 		token = Config.load_config()['telegram']['token']
-		send_message_url = constants.TELEGRAM_SEND_MESSAGE_BASE_URL.format(token)
+		send_message_url = Telegram.TELEGRAM_SEND_MESSAGE_BASE_URL.format(token)
 		
 		requests.get(send_message_url, params={'chat_id': chat_id, 'text': message, 'parse_mode': 'html'})
 	

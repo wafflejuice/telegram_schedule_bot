@@ -1,10 +1,8 @@
-from telegram.ext import Updater, MessageHandler, Filters
-import ccxt
-
 from config import Config
 from database import MariaDB
-from messenger import Telegram
 from watchlist import Minjoo
+from telegram.ext import Updater, MessageHandler, Filters
+from messenger import Telegram
 
 def run():
 	config = Config.load_config()

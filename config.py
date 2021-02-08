@@ -1,11 +1,11 @@
 import json
 
-import constants
-
 class Config:
+	CONFIG_FILE = 'config.json'
+	
 	@staticmethod
 	def load_config():
-		file = open(constants.CONFIG_FILE, 'r')
+		file = open(Config.CONFIG_FILE, 'r')
 		config = json.loads(file.read())
 		file.close()
 		
