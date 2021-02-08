@@ -7,6 +7,7 @@
         "charset": "utf8"
     },
     "telegram": {
-        "chat id": "YOUR TELEGRAM CHAT ID"
+        "token": "YOUR TELEGRAM TOKEN",
+        "chat ids": ["YOUR TELEGRAM CHAT ID"]
     }
 }

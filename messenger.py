@@ -13,6 +13,11 @@ class Telegram:
 		send_message_url = constants.TELEGRAM_SEND_MESSAGE_BASE_URL.format(token)
 		
 		requests.get(send_message_url, params={'chat_id': chat_id, 'text': message, 'parse_mode': 'html'})
+	
+	@staticmethod
+	def send_messages(chat_ids, message):
+		for chat_id in chat_ids:
+			Telegram.send_message(chat_id, message)
 
 	@staticmethod
 	def organize_message(writer, datetime, text):
