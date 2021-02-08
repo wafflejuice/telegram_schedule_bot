@@ -28,7 +28,7 @@ class Telegram:
 		
 		def select_schedule_by_date(date):
 			MariaDB().execute("SELECT text from minjoo where date='{}'".format(date))
-			return MariaDB().get_cursor().fetchone()[0]
+			return MariaDB().fetch_one()[0]
 		
 		# gov schedule from today to available
 		if text_lower == 'gov':
