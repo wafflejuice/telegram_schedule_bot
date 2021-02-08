@@ -1,0 +1,13 @@
+{
+    "mariaDB": {
+        "host": "localhost",
+        "port": 3306,
+        "user": "root",
+        "passwd": "YOUR PASSWD",
+        "charset": "utf8"
+    },
+    "telegram": {
+        "token": "YOUR TELEGRAM TOKEN",
+        "chat id": "YOUR TELEGRAM CHAT ID"
+    }
+}
