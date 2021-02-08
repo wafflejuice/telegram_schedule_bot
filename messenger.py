@@ -45,11 +45,11 @@ class Telegram:
 			date_str = None
 			
 			if re.match('gov20[2-9][0-9][0-1][0-9][0-3][0-9]', text_lower):
-				date_str = text_lower[3:10]
+				date_str = text_lower[3:11]
 			elif re.match('gov[2-9][0-9][0-1][0-9][0-3][0-9]', text_lower):
-				date_str = '20'+text_lower[3:8]
+				date_str = '20'+text_lower[3:9]
 			elif re.match('gov[0-1][0-9][0-3][0-9]', text_lower):
-				date_str = time.strftime('%Y', time.localtime(time.time())) + text_lower[3:6]
+				date_str = time.strftime('%Y', time.localtime(time.time())) + text_lower[3:7]
 			
 			schedule = select_schedule_by_date(date_str)
 			update.message.reply_text(schedule if not schedule else "No data")
