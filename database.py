@@ -1,6 +1,6 @@
 import pymysql
 
-class MariaDB(object):
+class MariaDB:
 	__database = None
 	__cursor = None
 	
