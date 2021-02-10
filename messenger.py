@@ -34,7 +34,7 @@ class Telegram:
 		text_lower = update.message.text.lower()
 		
 		def select_schedule_by_date(date):
-			MariaDB().execute("SELECT schedule from minjoo where date='{}'".format(date))
+			MariaDB().execute("SELECT schedule FROM minjoo WHERE date='{}'".format(date))
 			return MariaDB().fetch_one()[0]
 		
 		# retrieve available schedules from today
@@ -66,17 +66,25 @@ class Telegram:
 			
 			
 	@staticmethod
-	def date_to_korean_format(date):
+	def date_to_korean_format(YYYYMMDD_str):
 		base_date = "{}년 {}월 {}일"
 		
-		return base_date.format(date[0:4], date[4:6], date[6:8])
+		return base_date.format(YYYYMMDD_str[0:4], YYYYMMDD_str[4:6], YYYYMMDD_str[6:8])
 	
 	@staticmethod
-	def text_to_message(date, text):
-		return Telegram.date_to_korean_format(date) + chr(10) + text
-
-	@staticmethod
-	def updated_text_to_message(date, existing_text, update_text):
-		base_message = "<b>※UPDATED※</b>{0}{0}{1}{0}{2}{0}<i>에서</i>{0}{3}{0}<i>로 변경</i>"
+	def text_to_message(lines):
+		message = ''
 		
-		return base_message.format(chr(10), Telegram.date_to_korean_format(date), existing_text, update_text)
+		for arg in lines:
+			message = message + chr(10) + str(arg)
+			
+		return message
+	
+	@classmethod
+	def text_to_update_message(cls, old_lines, new_lines):
+		base_message = "<b>※UPDATED※</b>{0}{1}{0}{0}<i>에서</i>{0}{2}{0}{0}<i>로 변경</i>"
+		
+		old_text = cls.text_to_message(old_lines)
+		new_text = cls.text_to_message(new_lines)
+		
+		return base_message.format(chr(10), old_text, new_text)
