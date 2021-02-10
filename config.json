@@ -8,6 +8,6 @@
     },
     "telegram": {
         "token": "YOUR TELEGRAM TOKEN",
-        "chat ids": ["YOUR TELEGRAM CHAT ID"]
+        "chat ids": ["YOUR TELEGRAM CHAT ID(, ...)"]
     }
 }
