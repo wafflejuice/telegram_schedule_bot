@@ -19,6 +19,9 @@ class MariaDB:
 	def fetch_one(self):
 		return self.__cursor.fetchone()
 	
+	def fetch_all(self):
+		return self.__cursor.fetchall()
+	
 	def commit(self):
 		self.__database.commit()
 	
